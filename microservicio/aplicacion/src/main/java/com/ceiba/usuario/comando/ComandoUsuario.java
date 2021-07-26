@@ -11,10 +11,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ComandoUsuario{
+public class ComandoUsuario {
 
-    private Long id;
-    private String nombre;
-    private String clave;
-    private LocalDateTime fecha;
+	private Long id;
+	private String nombre;
+	private String clave;
+	private LocalDateTime fecha;
 }
