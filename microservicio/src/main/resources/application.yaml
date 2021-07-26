@@ -1,0 +1,21 @@
+jasypt:
+   encryptor:
+      password: ${jasyptpwd:secretkey}
+      algorithm: PBEWithMD5AndDES
+
+server:
+   port: 5432
+   servlet:
+      context-path: /taller
+      session:
+         timeout: 21600s
+
+spring:
+   datasource:
+      driver-class-name: org.postgresql.Driver
+      type: com.zaxxer.hikari.HikariDataSource
+      jdbcUrl: jdbc:postgresql://127.0.0.1:5432/taller
+      username: postgres
+      password: ENC(7hSgQoQ5/suROVwWbp3GWRy2nsXwNbuI)
+      hikari:
+         poolName: pool
