@@ -32,7 +32,7 @@ allprojects {
 	project.ext.junit5 = ["org.junit.jupiter:junit-jupiter-api:5.3.1"]
 	project.ext.junit4 = ["junit:junit:4.12"]
 	project.ext.mockito = ['org.mockito:mockito-all:1.10.19']
-	project.ext.lombok = ["org.projectlombok:lombok:1.18.10"]
+	project.ext.lombok = ["org.projectlombok:lombok:1.18.20"]
 	
 	project.ext.springboottest = ["org.springframework.boot:spring-boot-starter-test:${springBootVersion}"]
 	project.ext.springbootweb = ["org.springframework.boot:spring-boot-starter-web:${springBootVersion}"]
@@ -50,7 +50,7 @@ allprojects {
 			"io.springfox:springfox-swagger2:2.9.2"
 	]
 
-	project.ext.db = ["org.postgresql:42.2.14"]
+	project.ext.db = ["org.postgresql:postgresql:42.1.4"]
 
 	project.ext.springbootjdbc = ["org.springframework.boot:spring-boot-starter-jdbc:${springBootVersion}"]
 	project.ext.flyway = ["org.flywaydb:flyway-core:5.2.1"]
