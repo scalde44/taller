@@ -4,7 +4,7 @@ jasypt:
       algorithm: PBEWithMD5AndDES
 
 server:
-   port: 5432
+   port: 9090
    servlet:
       context-path: /taller
       session:
@@ -16,6 +16,6 @@ spring:
       type: com.zaxxer.hikari.HikariDataSource
       jdbcUrl: jdbc:postgresql://127.0.0.1:5432/taller
       username: postgres
-      password: ENC(7hSgQoQ5/suROVwWbp3GWRy2nsXwNbuI)
+      password: Scalderon4
       hikari:
          poolName: pool
