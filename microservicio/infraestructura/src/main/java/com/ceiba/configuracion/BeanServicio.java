@@ -1,29 +1,33 @@
 package com.ceiba.configuracion;
 
-import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
-import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
-import com.ceiba.usuario.servicio.ServicioCrearUsuario;
-import com.ceiba.usuario.servicio.ServicioEliminarUsuario;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.ceiba.mantenimiento.puerto.dao.DaoMantenimiento;
+import com.ceiba.mantenimiento.puerto.repositorio.RepositorioMantenimiento;
+import com.ceiba.mantenimiento.servicio.ServicioActualizarMantenimiento;
+import com.ceiba.mantenimiento.servicio.ServicioCrearMantenimiento;
+import com.ceiba.mantenimiento.servicio.ServicioEliminarMantenimiento;
 
 @Configuration
 public class BeanServicio {
 
-    @Bean
-    public ServicioCrearUsuario servicioCrearUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioCrearUsuario(repositorioUsuario);
-    }
+	@Bean
+	public ServicioCrearMantenimiento servicioCrearMantenimiento(RepositorioMantenimiento repositorioMantenimiento,
+			DaoMantenimiento daoMantenimiento) {
+		return new ServicioCrearMantenimiento(repositorioMantenimiento, daoMantenimiento);
+	}
 
-    @Bean
-    public ServicioEliminarUsuario servicioEliminarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioEliminarUsuario(repositorioUsuario);
-    }
+	@Bean
+	public ServicioEliminarMantenimiento servicioEliminarMantenimiento(
+			RepositorioMantenimiento repositorioMantenimiento) {
+		return new ServicioEliminarMantenimiento(repositorioMantenimiento);
+	}
 
-    @Bean
-    public ServicioActualizarUsuario servicioActualizarUsuario(RepositorioUsuario repositorioUsuario) {
-        return new ServicioActualizarUsuario(repositorioUsuario);
-    }
-	
+	@Bean
+	public ServicioActualizarMantenimiento servicioActualizarMantenimiento(
+			RepositorioMantenimiento repositorioMantenimiento) {
+		return new ServicioActualizarMantenimiento(repositorioMantenimiento);
+	}
 
 }
