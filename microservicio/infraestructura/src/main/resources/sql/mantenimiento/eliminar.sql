@@ -1,3 +1,3 @@
 delete 
-from usuario
+from mantenimiento
 where id = :id

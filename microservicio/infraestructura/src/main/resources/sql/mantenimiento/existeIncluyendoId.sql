@@ -1,0 +1,1 @@
+select count(1) from mantenimiento where id = :id and UPPER(placa) = UPPER(:placa)
