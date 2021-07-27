@@ -58,7 +58,7 @@ public class ConsultaControladorMantenimiento {
 
 	@GetMapping(value = "/activos/{fecha}")
 	@ApiOperation("Listar mantenimientos activos por fecha")
-	public List<DtoMantenimiento> buscarPorId(@PathVariable String fecha) {
+	public List<DtoMantenimiento> buscarPorFecha(@PathVariable String fecha) {
 		return this.manejadorListarMantenimientosPorFecha.ejecutar(fecha);
 	}
 
