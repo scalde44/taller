@@ -1,1 +1,1 @@
-insert into usuario(nombre,clave,fecha_creacion) values('test','1234',now())
+insert into mantenimiento(placa,cilindraje,fecha_entrada,tarifa,estado) values('GCY035',250,now(),100000,'A')
