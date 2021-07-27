@@ -1,7 +1,9 @@
-create table usuario (
- id serial,
- nombre varchar(100) not null,
- clave varchar(45) not null,
- fecha_creacion timestamp null,
- primary key (id)
-);
+create table mantenimiento (
+ id serial not null,
+ placa varchar(6) not null,
+ cilindraje numeric not null,
+ fecha_entrada timestamp not null,
+ tarifa numeric not null,
+ estado char(1) not null,
+ primary key(id)
+)
