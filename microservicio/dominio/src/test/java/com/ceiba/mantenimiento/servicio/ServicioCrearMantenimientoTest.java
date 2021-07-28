@@ -25,7 +25,10 @@ public class ServicioCrearMantenimientoTest {
 	private static final String EL_TALLER_ESTA_LLENO = "El taller ha llegado al tope de su capacidad: %s";
 	private static final int CAPACIDAD_MAXIMA_DEL_TALLER = 10;
 	private static final LocalDateTime FECHA_CON_HORA_VALIDA_SEMANA = LocalDateTime.of(2021, 8, 3, 10, 0);
-	private static final LocalDateTime FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA = LocalDateTime.of(2021, 8, 1, 10, 0);
+	private static final LocalDateTime FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_SABADO = LocalDateTime.of(2021, 7, 31, 10,
+			0);
+	private static final LocalDateTime FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_DOMINGO = LocalDateTime.of(2021, 8, 1, 10,
+			0);
 	//
 	private static final String SE_DEBE_INGRESAR_LA_PLACA = "Se debe ingresar la placa de la moto";
 	private static final String LA_PLACA_DEBE_TENER_LONGITUD_MAYOR_O_IGUAL_A = "La placa debe tener una longitud mayor o igual a %s";
@@ -68,9 +71,9 @@ public class ServicioCrearMantenimientoTest {
 	}
 
 	@Test
-	public void debeCrearUnMantenimientoFinDeSemanaBajoCilindraje() {
+	public void debeCrearUnMantenimientoSabadoBajoCilindraje() {
 		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder()
-				.conFechaEntrada(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA).conCilindraje(CILINDRAJE_MINIMO).build();
+				.conFechaEntrada(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_SABADO).conCilindraje(CILINDRAJE_MINIMO).build();
 		Mockito.when(repositorioMantenimiento.crear(Mockito.any())).thenReturn(1L);
 
 		// act - assert
@@ -79,7 +82,24 @@ public class ServicioCrearMantenimientoTest {
 		assertEquals(1L, mantenimiento.getId(), 0);
 		assertEquals("MKC314", mantenimiento.getPlaca());
 		assertEquals(CILINDRAJE_MINIMO, mantenimiento.getCilindraje(), 0);
-		assertEquals(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA, mantenimiento.getFechaEntrada());
+		assertEquals(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_SABADO, mantenimiento.getFechaEntrada());
+		assertEquals(TARIFA_MENOR_A_250_CC + TARIFA_RECARGO_FIN_DE_SEMANA, mantenimiento.getTarifa(), 0);
+		assertEquals("A", mantenimiento.getEstado());
+	}
+
+	@Test
+	public void debeCrearUnMantenimientoDomingoBajoCilindraje() {
+		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder()
+				.conFechaEntrada(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_DOMINGO).conCilindraje(CILINDRAJE_MINIMO).build();
+		Mockito.when(repositorioMantenimiento.crear(Mockito.any())).thenReturn(1L);
+
+		// act - assert
+
+		assertEquals(1L, servicioCrearMantenimiento.ejecutar(mantenimiento), 0.0);
+		assertEquals(1L, mantenimiento.getId(), 0);
+		assertEquals("MKC314", mantenimiento.getPlaca());
+		assertEquals(CILINDRAJE_MINIMO, mantenimiento.getCilindraje(), 0);
+		assertEquals(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_DOMINGO, mantenimiento.getFechaEntrada());
 		assertEquals(TARIFA_MENOR_A_250_CC + TARIFA_RECARGO_FIN_DE_SEMANA, mantenimiento.getTarifa(), 0);
 		assertEquals("A", mantenimiento.getEstado());
 	}
@@ -102,9 +122,9 @@ public class ServicioCrearMantenimientoTest {
 	}
 
 	@Test
-	public void debeCrearUnMantenimientoFinDeSemanaAltoCilindraje() {
+	public void debeCrearUnMantenimientoSabadoAltoCilindraje() {
 		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder()
-				.conFechaEntrada(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA).conCilindraje(CILINDRAJE_ALTO).build();
+				.conFechaEntrada(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_SABADO).conCilindraje(CILINDRAJE_ALTO).build();
 		Mockito.when(repositorioMantenimiento.crear(Mockito.any())).thenReturn(1L);
 
 		// act - assert
@@ -113,7 +133,24 @@ public class ServicioCrearMantenimientoTest {
 		assertEquals(1L, mantenimiento.getId(), 0);
 		assertEquals("MKC314", mantenimiento.getPlaca());
 		assertEquals(CILINDRAJE_ALTO, mantenimiento.getCilindraje(), 0);
-		assertEquals(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA, mantenimiento.getFechaEntrada());
+		assertEquals(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_SABADO, mantenimiento.getFechaEntrada());
+		assertEquals(TARIFA_MAYOR_O_IGUAL_A_250_CC + TARIFA_RECARGO_FIN_DE_SEMANA, mantenimiento.getTarifa(), 0);
+		assertEquals("A", mantenimiento.getEstado());
+	}
+
+	@Test
+	public void debeCrearUnMantenimientoDomingoAltoCilindraje() {
+		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder()
+				.conFechaEntrada(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_DOMINGO).conCilindraje(CILINDRAJE_ALTO).build();
+		Mockito.when(repositorioMantenimiento.crear(Mockito.any())).thenReturn(1L);
+
+		// act - assert
+
+		assertEquals(1L, servicioCrearMantenimiento.ejecutar(mantenimiento), 0.0);
+		assertEquals(1L, mantenimiento.getId(), 0);
+		assertEquals("MKC314", mantenimiento.getPlaca());
+		assertEquals(CILINDRAJE_ALTO, mantenimiento.getCilindraje(), 0);
+		assertEquals(FECHA_CON_HORA_VALIDA_FIN_DE_SEMANA_DOMINGO, mantenimiento.getFechaEntrada());
 		assertEquals(TARIFA_MAYOR_O_IGUAL_A_250_CC + TARIFA_RECARGO_FIN_DE_SEMANA, mantenimiento.getTarifa(), 0);
 		assertEquals("A", mantenimiento.getEstado());
 	}
