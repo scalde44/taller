@@ -13,7 +13,7 @@ public class MantenimientoTestDataBuilder {
 	private String estado;
 
 	public MantenimientoTestDataBuilder() {
-		id = 2L;
+		id = 1L;
 		placa = "MKC314";
 		cilindraje = 150;
 		fechaEntrada = LocalDateTime.now();
