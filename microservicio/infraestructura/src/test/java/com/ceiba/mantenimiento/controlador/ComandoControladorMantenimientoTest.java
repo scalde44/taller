@@ -38,6 +38,7 @@ public class ComandoControladorMantenimientoTest {
 	public void crear() throws Exception {
 		ComandoMantenimiento mantenimiento = new ComandoMantenimientoTestDataBuilder().conFecha(FECHA_CON_HORA_VALIDA)
 				.build();
+
 		mocMvc.perform(MockMvcRequestBuilders.post("/mantenimientos").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(mantenimiento)))
 				.andExpect(MockMvcResultMatchers.status().isOk()).andExpect(jsonPath("$.valor").exists());
@@ -47,6 +48,7 @@ public class ComandoControladorMantenimientoTest {
 	public void actualizar() throws Exception {
 		ComandoMantenimiento mantenimiento = new ComandoMantenimientoTestDataBuilder().conPlaca("JNF243")
 				.conFecha(FECHA_CON_HORA_VALIDA).build();
+
 		mocMvc.perform(MockMvcRequestBuilders.post("/mantenimientos").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(mantenimiento)))
 				.andExpect(MockMvcResultMatchers.status().isOk()).andExpect(jsonPath("$.valor").exists());
@@ -59,6 +61,7 @@ public class ComandoControladorMantenimientoTest {
 	public void eliminar() throws Exception {
 		ComandoMantenimiento mantenimiento = new ComandoMantenimientoTestDataBuilder().conPlaca("GRB42F")
 				.conFecha(FECHA_CON_HORA_VALIDA).build();
+
 		mocMvc.perform(post("/mantenimientos").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(mantenimiento))).andExpect(status().isOk())
 				.andExpect(jsonPath("$.valor").exists());
