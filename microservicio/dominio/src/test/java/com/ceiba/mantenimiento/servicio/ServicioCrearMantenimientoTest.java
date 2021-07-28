@@ -53,7 +53,14 @@ public class ServicioCrearMantenimientoTest {
 		Mockito.when(repositorioMantenimiento.crear(Mockito.any())).thenReturn(1L);
 
 		// act - assert
+
 		assertEquals(1L, servicioCrearMantenimiento.ejecutar(mantenimiento), 0.0);
+		assertEquals(1L, mantenimiento.getId(), 0);
+		assertEquals("MKC314", mantenimiento.getPlaca());
+		assertEquals(150, mantenimiento.getCilindraje(), 0);
+		assertEquals(FECHA_CON_HORA_VALIDA, mantenimiento.getFechaEntrada());
+		assertEquals(100000, mantenimiento.getTarifa(), 0);
+		assertEquals("A", mantenimiento.getEstado());
 	}
 
 	@Test
