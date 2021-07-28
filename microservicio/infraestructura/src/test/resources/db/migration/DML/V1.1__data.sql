@@ -1,1 +1,2 @@
-insert into mantenimiento(placa,cilindraje,fecha_entrada,tarifa,estado) values('GCY035',250,now(),100000,'A')
+insert into mantenimiento(placa,cilindraje,fecha_entrada,tarifa,estado) values('GCY035',250,now(),100000,'A');
+insert into mantenimiento(placa,cilindraje,fecha_entrada,tarifa,estado) values('FNF327',150,now(),100000,'I')
