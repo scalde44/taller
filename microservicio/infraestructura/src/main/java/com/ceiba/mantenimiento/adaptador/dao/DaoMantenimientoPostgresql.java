@@ -1,5 +1,6 @@
 package com.ceiba.mantenimiento.adaptador.dao;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,7 +42,7 @@ public class DaoMantenimientoPostgresql implements DaoMantenimiento {
 	}
 
 	@Override
-	public List<DtoMantenimiento> listarActivosPorFecha(String fecha) {
+	public List<DtoMantenimiento> listarActivosPorFecha(LocalDate fecha) {
 		MapSqlParameterSource paramSource = new MapSqlParameterSource();
 		paramSource.addValue("fecha", fecha);
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListarActivosPorFecha,

@@ -39,7 +39,7 @@ public class ServicioCrearMantenimiento {
 	}
 
 	private void validarDisponibilidad(LocalDateTime fecha) {
-		List<DtoMantenimiento> dtoMantenimientos = this.daoMantenimiento.listarActivosPorFecha(fecha.toString());
+		List<DtoMantenimiento> dtoMantenimientos = this.daoMantenimiento.listarActivosPorFecha(fecha.toLocalDate());
 		if (dtoMantenimientos.size() > CAPACIDAD_MAXIMA_DEL_TALLER) {
 			throw new ExcepcionCapacidad(String.format(EL_TALLER_ESTA_LLENO, CAPACIDAD_MAXIMA_DEL_TALLER));
 		}

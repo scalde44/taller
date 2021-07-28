@@ -1,5 +1,6 @@
 package com.ceiba.mantenimiento.consulta;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -16,6 +17,6 @@ public class ManejadorListarMantenimientosPorFecha {
 	}
 
 	public List<DtoMantenimiento> ejecutar(String fecha) {
-		return this.daoMantenimiento.listarActivosPorFecha(fecha);
+		return this.daoMantenimiento.listarActivosPorFecha(LocalDate.parse(fecha));
 	}
 }
