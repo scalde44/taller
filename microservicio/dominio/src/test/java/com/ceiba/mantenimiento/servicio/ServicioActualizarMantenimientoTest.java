@@ -17,7 +17,7 @@ import com.ceiba.mantenimiento.servicio.testdatabuilder.MantenimientoTestDataBui
 
 public class ServicioActualizarMantenimientoTest {
 	private static final String LA_MOTO_NO_EXISTE = "La moto no existe";
-	private static final LocalDateTime FECHA_CON_HORA_VALIDA = LocalDateTime.of(2021, 8, 1, 10, 0);
+	private static final LocalDateTime FECHA_CON_HORA_VALIDA = LocalDateTime.of(2021, 8, 3, 10, 0);
 
 	private RepositorioMantenimiento repositorioMantenimiento;
 	private ServicioActualizarMantenimiento servicioActualizarMantenimiento;

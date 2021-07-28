@@ -9,7 +9,6 @@ public class MantenimientoTestDataBuilder {
 	private String placa;
 	private Integer cilindraje;
 	private LocalDateTime fechaEntrada;
-	private Integer tarifa;
 	private String estado;
 
 	public MantenimientoTestDataBuilder() {
@@ -17,7 +16,6 @@ public class MantenimientoTestDataBuilder {
 		placa = "MKC314";
 		cilindraje = 150;
 		fechaEntrada = LocalDateTime.now();
-		tarifa = 100000;
 		estado = "A";
 	}
 
@@ -36,17 +34,12 @@ public class MantenimientoTestDataBuilder {
 		return this;
 	}
 
-	public MantenimientoTestDataBuilder conTarifa(Integer tarifa) {
-		this.tarifa = tarifa;
-		return this;
-	}
-
 	public MantenimientoTestDataBuilder conEstado(String estado) {
 		this.estado = estado;
 		return this;
 	}
 
 	public Mantenimiento build() {
-		return new Mantenimiento(id, placa, cilindraje, fechaEntrada, tarifa, estado);
+		return new Mantenimiento(id, placa, cilindraje, fechaEntrada, estado);
 	}
 }
