@@ -41,6 +41,11 @@ public class MantenimientoTestDataBuilder {
 		return this;
 	}
 
+	public MantenimientoTestDataBuilder conEstado(String estado) {
+		this.estado = estado;
+		return this;
+	}
+
 	public Mantenimiento build() {
 		return new Mantenimiento(id, placa, cilindraje, fechaEntrada, tarifa, estado);
 	}
