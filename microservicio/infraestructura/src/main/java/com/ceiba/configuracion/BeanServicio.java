@@ -3,7 +3,6 @@ package com.ceiba.configuracion;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.ceiba.mantenimiento.puerto.dao.DaoMantenimiento;
 import com.ceiba.mantenimiento.puerto.repositorio.RepositorioMantenimiento;
 import com.ceiba.mantenimiento.servicio.ServicioActualizarMantenimiento;
 import com.ceiba.mantenimiento.servicio.ServicioCrearMantenimiento;
@@ -13,9 +12,8 @@ import com.ceiba.mantenimiento.servicio.ServicioEliminarMantenimiento;
 public class BeanServicio {
 
 	@Bean
-	public ServicioCrearMantenimiento servicioCrearMantenimiento(RepositorioMantenimiento repositorioMantenimiento,
-			DaoMantenimiento daoMantenimiento) {
-		return new ServicioCrearMantenimiento(repositorioMantenimiento, daoMantenimiento);
+	public ServicioCrearMantenimiento servicioCrearMantenimiento(RepositorioMantenimiento repositorioMantenimiento) {
+		return new ServicioCrearMantenimiento(repositorioMantenimiento);
 	}
 
 	@Bean
