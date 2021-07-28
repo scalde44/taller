@@ -1,7 +1,6 @@
 package com.ceiba.mantenimiento.controlador;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -46,25 +45,18 @@ public class ComandoControladorMantenimientoTest {
 
 	@Test
 	public void actualizar() throws Exception {
-		ComandoMantenimiento mantenimiento = new ComandoMantenimientoTestDataBuilder().conPlaca("JNF243")
-				.conFecha(FECHA_CON_HORA_VALIDA).build();
-
+		ComandoMantenimiento mantenimiento = new ComandoMantenimientoTestDataBuilder().conFecha(FECHA_CON_HORA_VALIDA)
+				.build();
 		mocMvc.perform(MockMvcRequestBuilders.post("/mantenimientos").contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(mantenimiento)))
 				.andExpect(MockMvcResultMatchers.status().isOk()).andExpect(jsonPath("$.valor").exists());
-		mocMvc.perform(MockMvcRequestBuilders.put("/mantenimientos/" + 2L).contentType(MediaType.APPLICATION_JSON)
+		mocMvc.perform(MockMvcRequestBuilders.put("/mantenimientos/{id}", 2L).contentType(MediaType.APPLICATION_JSON)
 				.content(objectMapper.writeValueAsString(mantenimiento)))
 				.andExpect(MockMvcResultMatchers.status().isOk());
 	}
 
 	@Test
 	public void eliminar() throws Exception {
-		ComandoMantenimiento mantenimiento = new ComandoMantenimientoTestDataBuilder().conPlaca("GRB42F")
-				.conFecha(FECHA_CON_HORA_VALIDA).build();
-
-		mocMvc.perform(post("/mantenimientos").contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(mantenimiento))).andExpect(status().isOk())
-				.andExpect(jsonPath("$.valor").exists());
 		mocMvc.perform(delete("/mantenimientos/{id}", 2L).contentType(MediaType.APPLICATION_JSON)
 				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
 	}
