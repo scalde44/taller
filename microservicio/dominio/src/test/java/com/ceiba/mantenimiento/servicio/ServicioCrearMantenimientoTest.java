@@ -2,6 +2,8 @@ package com.ceiba.mantenimiento.servicio;
 
 import static org.junit.Assert.assertEquals;
 
+import java.time.LocalDateTime;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -19,6 +21,7 @@ public class ServicioCrearMantenimientoTest {
 	private static final String LA_MOTO_ESTA_EN_MANTENIMIENTO_ACTIVO = "La moto tiene un mantenimiento activo";
 	private static final String EL_TALLER_ESTA_LLENO = "El taller ha llegado al tope de su capacidad: %s";
 	private static final int CAPACIDAD_MAXIMA_DEL_TALLER = 10;
+	private static final LocalDateTime FECHA_CON_HORA_VALIDA = LocalDateTime.of(2021, 8, 1, 10, 0);
 	//
 	private static final String SE_DEBE_INGRESAR_LA_PLACA = "Se debe ingresar la placa de la moto";
 	private static final String LA_PLACA_DEBE_TENER_LONGITUD_MAYOR_O_IGUAL_A = "La placa debe tener una longitud mayor o igual a %s";
@@ -37,7 +40,7 @@ public class ServicioCrearMantenimientoTest {
 
 	@Test
 	public void debeCrearUnMantenimiento() {
-		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder().build();
+		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder().conFechaEntrada(FECHA_CON_HORA_VALIDA).build();
 		Mockito.when(repositorioMantenimiento.crear(Mockito.any())).thenReturn(1L);
 
 		// act - assert
@@ -46,7 +49,7 @@ public class ServicioCrearMantenimientoTest {
 
 	@Test
 	public void debeValidarMantenimientoActivoDeLaMoto() {
-		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder().build();
+		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder().conFechaEntrada(FECHA_CON_HORA_VALIDA).build();
 		Mockito.when(repositorioMantenimiento.existeActivo(Mockito.anyString())).thenReturn(true);
 
 		// act - assert
@@ -56,7 +59,7 @@ public class ServicioCrearMantenimientoTest {
 
 	@Test
 	public void debeValidarDisponibilidadDelTaller() {
-		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder().build();
+		Mantenimiento mantenimiento = new MantenimientoTestDataBuilder().conFechaEntrada(FECHA_CON_HORA_VALIDA).build();
 		Mockito.when(repositorioMantenimiento.contarActivosPorFecha(Mockito.any()))
 				.thenReturn(CAPACIDAD_MAXIMA_DEL_TALLER);
 
@@ -68,7 +71,8 @@ public class ServicioCrearMantenimientoTest {
 	/* PREGUNTAR */
 	@Test
 	public void validarPlacaObligatoria() {
-		MantenimientoTestDataBuilder mantenimientoTestDataBuilder = new MantenimientoTestDataBuilder().conPlaca(null);
+		MantenimientoTestDataBuilder mantenimientoTestDataBuilder = new MantenimientoTestDataBuilder()
+				.conFechaEntrada(FECHA_CON_HORA_VALIDA).conPlaca(null);
 
 		BasePrueba.assertThrows(() -> mantenimientoTestDataBuilder.build(), ExcepcionValorObligatorio.class,
 				SE_DEBE_INGRESAR_LA_PLACA);
@@ -76,7 +80,8 @@ public class ServicioCrearMantenimientoTest {
 
 	@Test
 	public void validarLongitudMinimaPlaca() {
-		MantenimientoTestDataBuilder mantenimientoTestDataBuilder = new MantenimientoTestDataBuilder().conPlaca("VEB1");
+		MantenimientoTestDataBuilder mantenimientoTestDataBuilder = new MantenimientoTestDataBuilder()
+				.conFechaEntrada(FECHA_CON_HORA_VALIDA).conPlaca("VEB1");
 
 		BasePrueba.assertThrows(() -> mantenimientoTestDataBuilder.build(), ExcepcionLongitudValor.class,
 				String.format(LA_PLACA_DEBE_TENER_LONGITUD_MAYOR_O_IGUAL_A, LONGITUD_MINIMA_PLACA));
@@ -85,7 +90,7 @@ public class ServicioCrearMantenimientoTest {
 	@Test
 	public void validarLongitudMaximaPlaca() {
 		MantenimientoTestDataBuilder mantenimientoTestDataBuilder = new MantenimientoTestDataBuilder()
-				.conPlaca("VEB123V");
+				.conFechaEntrada(FECHA_CON_HORA_VALIDA).conPlaca("VEB123V");
 
 		BasePrueba.assertThrows(() -> mantenimientoTestDataBuilder.build(), ExcepcionLongitudValor.class,
 				String.format(LA_PLACA_DEBE_TENER_LONGITUD_MENOR_O_IGUAL_A, LONGITUD_MAXIMA_PLACA));
