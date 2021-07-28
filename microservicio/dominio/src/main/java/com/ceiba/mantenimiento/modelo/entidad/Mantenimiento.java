@@ -29,7 +29,7 @@ public class Mantenimiento {
 	private static final int LONGITUD_MAXIMA_PLACA = 6;
 	private static final long CILINDRAJE_MINIMO = 50L;
 	private static final long TARIFA_MINIMA = 80000L;
-	private static final int LONGITUD_ESTADO = 2;
+	private static final int LONGITUD_ESTADO = 1;
 	private static final int HORA_ENTRADA = 7;
 	private static final int HORA_SALIDA = 17;
 
