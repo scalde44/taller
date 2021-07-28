@@ -1,5 +1,7 @@
 package com.ceiba.mantenimiento.puerto.repositorio;
 
+import java.time.LocalDate;
+
 import com.ceiba.mantenimiento.modelo.entidad.Mantenimiento;
 
 public interface RepositorioMantenimiento {
@@ -40,4 +42,12 @@ public interface RepositorioMantenimiento {
 	 * @return si existe o no
 	 */
 	boolean existeIncluyendoId(Long id, String placa);
+
+	/**
+	 * Permite contar la cantidad de mantenimientos activos en ese dia
+	 * 
+	 * @param fecha
+	 * @return cantidad de mantenimientos activos en ese dia
+	 */
+	int contarActivosPorFecha(LocalDate fecha);
 }

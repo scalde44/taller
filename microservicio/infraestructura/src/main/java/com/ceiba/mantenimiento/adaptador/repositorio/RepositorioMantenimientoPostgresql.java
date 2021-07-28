@@ -1,5 +1,7 @@
 package com.ceiba.mantenimiento.adaptador.repositorio;
 
+import java.time.LocalDate;
+
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 
@@ -26,6 +28,9 @@ public class RepositorioMantenimientoPostgresql implements RepositorioMantenimie
 
 	@SqlStatement(namespace = "mantenimiento", value = "existeIncluyendoId")
 	private static String sqlExisteIncluyendoId;
+
+	@SqlStatement(namespace = "mantenimiento", value = "contarActivosPorFecha")
+	private static String sqlContarActivosPorFecha;
 
 	public RepositorioMantenimientoPostgresql(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
 		this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
@@ -66,6 +71,15 @@ public class RepositorioMantenimientoPostgresql implements RepositorioMantenimie
 
 		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
 				.queryForObject(sqlExisteIncluyendoId, paramSource, Boolean.class);
+	}
+
+	@Override
+	public int contarActivosPorFecha(LocalDate fecha) {
+		MapSqlParameterSource paramSource = new MapSqlParameterSource();
+		paramSource.addValue("fecha", fecha);
+
+		return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate()
+				.queryForObject(sqlContarActivosPorFecha, paramSource, int.class);
 	}
 
 }
