@@ -57,11 +57,13 @@ public class ConsultaControladorMantenimientoTest {
 				.andExpect(jsonPath("$.cilindraje", is(CILINDRAJE_PRUEBA)))
 				.andExpect(jsonPath("$.estado", is(ESTADO_PRUEBA)));
 	}
-	/*
-	 * @Test public void buscarPorFecha() throws Exception { // arrange
-	 * 
-	 * // act - assert
-	 * mocMvc.perform(get("/mantenimientos/activos/2021-07-27").accept(MediaType.
-	 * APPLICATION_JSON)) .andDo(print()) .andExpect(status().isOk()); }
-	 */
+
+	@Test
+	public void buscarPorFecha() throws Exception { // arrange
+
+		// act - assert
+		mocMvc.perform(get("/mantenimientos/activos/2021-07-27").accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk());
+	}
+
 }
