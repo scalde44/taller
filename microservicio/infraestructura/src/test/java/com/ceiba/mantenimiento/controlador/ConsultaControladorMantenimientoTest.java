@@ -1,6 +1,5 @@
 package com.ceiba.mantenimiento.controlador;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -34,7 +33,7 @@ public class ConsultaControladorMantenimientoTest {
 
 		// act - assert
 		mocMvc.perform(get("/mantenimientos").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-				.andExpect(jsonPath("$", hasSize(1))).andExpect(jsonPath("$[0].id", is(1)));
+				.andExpect(jsonPath("$[0].id", is(1)));
 	}
 
 	@Test
@@ -43,8 +42,7 @@ public class ConsultaControladorMantenimientoTest {
 
 		// act - assert
 		mocMvc.perform(get("/mantenimientos/activos").contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(jsonPath("$", hasSize(1)))
-				.andExpect(jsonPath("$[0].estado", is(ESTADO_PRUEBA)));
+				.andExpect(status().isOk()).andExpect(jsonPath("$[0].estado", is(ESTADO_PRUEBA)));
 	}
 
 	@Test
