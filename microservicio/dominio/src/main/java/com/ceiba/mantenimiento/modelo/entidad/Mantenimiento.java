@@ -42,7 +42,8 @@ public class Mantenimiento {
 	private Integer tarifa;
 	private String estado;
 
-	public Mantenimiento(Long id, String placa, Integer cilindraje, LocalDateTime fechaEntrada, String estado) {
+	public Mantenimiento(Long id, String placa, Integer cilindraje, LocalDateTime fechaEntrada,
+			EstadoMantenimiento estado) {
 		validarObligatorio(placa, SE_DEBE_INGRESAR_LA_PLACA);
 		validarLongitud(placa, LONGITUD_MINIMA_PLACA,
 				String.format(LA_PLACA_DEBE_TENER_LONGITUD_MAYOR_O_IGUAL_A, LONGITUD_MINIMA_PLACA));
@@ -65,7 +66,7 @@ public class Mantenimiento {
 		this.cilindraje = cilindraje;
 		this.fechaEntrada = fechaMantenimiento;
 		this.tarifa = tarifaMantenimiento;
-		this.estado = estado;
+		this.estado = estado.toString();
 	}
 
 	private Integer calcularTarifa(int cilindraje, LocalDateTime fecha) {

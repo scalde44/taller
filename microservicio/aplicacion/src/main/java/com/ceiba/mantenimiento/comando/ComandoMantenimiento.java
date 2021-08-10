@@ -2,6 +2,8 @@ package com.ceiba.mantenimiento.comando;
 
 import java.time.LocalDateTime;
 
+import com.ceiba.mantenimiento.modelo.entidad.EstadoMantenimiento;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,5 +19,5 @@ public class ComandoMantenimiento {
 	private Integer cilindraje;
 	private LocalDateTime fecha;
 	private Integer tarifa;
-	private String estado;
+	private EstadoMantenimiento estado;
 }

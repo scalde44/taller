@@ -16,6 +16,7 @@ import com.ceiba.dominio.excepcion.ExcepcionLongitudValor;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.mantenimiento.modelo.dto.DtoMantenimiento;
+import com.ceiba.mantenimiento.modelo.entidad.EstadoMantenimiento;
 import com.ceiba.mantenimiento.modelo.entidad.Mantenimiento;
 import com.ceiba.mantenimiento.puerto.repositorio.RepositorioMantenimiento;
 import com.ceiba.mantenimiento.servicio.testdatabuilder.MantenimientoTestDataBuilder;
@@ -34,7 +35,6 @@ public class ServicioCrearMantenimientoTest {
 	private static final String LA_PLACA_DEBE_TENER_LONGITUD_MAYOR_O_IGUAL_A = "La placa debe tener una longitud mayor o igual a %s";
 	private static final String LA_PLACA_DEBE_TENER_LONGITUD_MENOR_O_IGUAL_A = "La placa debe tener una longitud menor o igual a %s";
 	private static final String EL_CILINDRAJE_DEBE_SER_MAYOR_O_IGUAL_A = "El cilindraje de la moto debe ser mayor o igual a %s";
-	private static final String EL_ESTADO_DEBE_TENER_LONGITUD_MENOR_A = "La longitud del estado debe ser menor a %s";
 	private static final int LONGITUD_MINIMA_PLACA = 5;
 	private static final int LONGITUD_MAXIMA_PLACA = 6;
 	private static final int CILINDRAJE_MINIMO = 50;
@@ -42,7 +42,6 @@ public class ServicioCrearMantenimientoTest {
 	private static final int TARIFA_MENOR_A_250_CC = 80000;
 	private static final long TARIFA_MAYOR_O_IGUAL_A_250_CC = 100000;
 	private static final long TARIFA_RECARGO_FIN_DE_SEMANA = 10000;
-	private static final int LONGITUD_ESTADO = 1;
 	//
 	private RepositorioMantenimiento repositorioMantenimiento;
 	private ServicioCrearMantenimiento servicioCrearMantenimiento;
@@ -182,14 +181,14 @@ public class ServicioCrearMantenimientoTest {
 	@Test
 	public void debeCrearUnDtoMantenimiento() {
 		DtoMantenimiento dtoMantenimiento = new DtoMantenimiento(1L, "GCR233", CILINDRAJE_MINIMO,
-				FECHA_CON_HORA_VALIDA_SEMANA, TARIFA_MENOR_A_250_CC, "A");
+				FECHA_CON_HORA_VALIDA_SEMANA, TARIFA_MENOR_A_250_CC, EstadoMantenimiento.A);
 
 		Assert.assertEquals(1L, dtoMantenimiento.getId(), 0);
 		Assert.assertEquals("GCR233", dtoMantenimiento.getPlaca());
 		Assert.assertEquals(CILINDRAJE_MINIMO, dtoMantenimiento.getCilindraje(), 0);
 		Assert.assertEquals(FECHA_CON_HORA_VALIDA_SEMANA, dtoMantenimiento.getFechaEntrada());
 		Assert.assertEquals(TARIFA_MENOR_A_250_CC, dtoMantenimiento.getTarifa(), 0);
-		Assert.assertEquals("A", dtoMantenimiento.getEstado());
+		Assert.assertEquals(EstadoMantenimiento.A, dtoMantenimiento.getEstado());
 	}
 
 	@Test
@@ -228,12 +227,4 @@ public class ServicioCrearMantenimientoTest {
 				String.format(EL_CILINDRAJE_DEBE_SER_MAYOR_O_IGUAL_A, CILINDRAJE_MINIMO));
 	}
 
-	@Test
-	public void validarLongitudMaximaEstado() {
-		MantenimientoTestDataBuilder mantenimientoTestDataBuilder = new MantenimientoTestDataBuilder()
-				.conFechaEntrada(FECHA_CON_HORA_VALIDA_SEMANA).conEstado("AA");
-
-		BasePrueba.assertThrows(() -> mantenimientoTestDataBuilder.build(), ExcepcionLongitudValor.class,
-				String.format(EL_ESTADO_DEBE_TENER_LONGITUD_MENOR_A, LONGITUD_ESTADO));
-	}
 }

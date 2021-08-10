@@ -14,6 +14,7 @@ import com.ceiba.mantenimiento.comando.ComandoMantenimiento;
 import com.ceiba.mantenimiento.comando.manejador.ManejadorActualizarMantenimiento;
 import com.ceiba.mantenimiento.comando.manejador.ManejadorCrearMantenimiento;
 import com.ceiba.mantenimiento.comando.manejador.ManejadorEliminarMantenimiento;
+import com.ceiba.mantenimiento.modelo.entidad.EstadoMantenimiento;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,7 +39,7 @@ public class ComandoControladorMantenimiento {
 	@PostMapping
 	@ApiOperation("Crear Mantenimiento")
 	public ComandoRespuesta<Long> crear(@RequestBody ComandoMantenimiento comandoMantenimiento) {
-		comandoMantenimiento.setEstado("A");
+		comandoMantenimiento.setEstado(EstadoMantenimiento.A);
 		return manejadorCrearMantenimiento.ejecutar(comandoMantenimiento);
 	}
 
@@ -52,7 +53,7 @@ public class ComandoControladorMantenimiento {
 	@ApiOperation("Finalizar mantenimiento")
 	public void actualizar(@RequestBody ComandoMantenimiento comandoMantenimiento, @PathVariable Long id) {
 		comandoMantenimiento.setId(id);
-		comandoMantenimiento.setEstado("I");
+		comandoMantenimiento.setEstado(EstadoMantenimiento.I);
 		manejadorActualizarMantenimiento.ejecutar(comandoMantenimiento);
 	}
 

@@ -2,6 +2,8 @@ package com.ceiba.mantenimiento.modelo.dto;
 
 import java.time.LocalDateTime;
 
+import com.ceiba.mantenimiento.modelo.entidad.EstadoMantenimiento;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,6 +15,6 @@ public class DtoMantenimiento {
 	private Integer cilindraje;
 	private LocalDateTime fechaEntrada;
 	private Integer tarifa;
-	private String estado;
+	private EstadoMantenimiento estado;
 
 }

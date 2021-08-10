@@ -3,6 +3,7 @@ package com.ceiba.mantenimiento.servicio.testdatabuilder;
 import java.time.LocalDateTime;
 
 import com.ceiba.mantenimiento.comando.ComandoMantenimiento;
+import com.ceiba.mantenimiento.modelo.entidad.EstadoMantenimiento;
 
 public class ComandoMantenimientoTestDataBuilder {
 	private Long id;
@@ -10,14 +11,14 @@ public class ComandoMantenimientoTestDataBuilder {
 	private Integer cilindraje;
 	private LocalDateTime fecha;
 	private Integer tarifa;
-	private String estado;
+	private EstadoMantenimiento estado;
 
 	public ComandoMantenimientoTestDataBuilder() {
 		placa = "MKC314";
 		cilindraje = 150;
 		fecha = LocalDateTime.now();
 		tarifa = 100000;
-		estado = "A";
+		estado = EstadoMantenimiento.A;
 	}
 
 	public ComandoMantenimientoTestDataBuilder conPlaca(String placa) {

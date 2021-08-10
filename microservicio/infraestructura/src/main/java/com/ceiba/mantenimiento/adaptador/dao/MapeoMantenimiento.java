@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.ceiba.infraestructura.jdbc.MapperResult;
 import com.ceiba.mantenimiento.modelo.dto.DtoMantenimiento;
+import com.ceiba.mantenimiento.modelo.entidad.EstadoMantenimiento;
 
 public class MapeoMantenimiento implements RowMapper<DtoMantenimiento>, MapperResult {
 
@@ -18,7 +19,7 @@ public class MapeoMantenimiento implements RowMapper<DtoMantenimiento>, MapperRe
 		Integer cilindraje = resultSet.getInt("cilindraje");
 		LocalDateTime fechaEntrada = extraerLocalDateTime(resultSet, "fecha_entrada");
 		Integer tarifa = resultSet.getInt("tarifa");
-		String estado = resultSet.getString("estado");
+		EstadoMantenimiento estado = EstadoMantenimiento.valueOf(resultSet.getString("estado"));
 
 		return new DtoMantenimiento(id, placa, cilindraje, fechaEntrada, tarifa, estado);
 	}
