@@ -18,5 +18,4 @@ public class ManejadorEliminarMantenimiento implements ManejadorComando<Long> {
 	public void ejecutar(Long id) {
 		this.servicioEliminarMantenimiento.ejecutar(id);
 	}
-
 }
