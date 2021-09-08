@@ -2,7 +2,7 @@ version: '3.1'
 services:
   app:
     container_name: springboot-postgresql
-    image: springboot-postgresql
+    image: scalde44/spring-pg:v2
     build: ./
     ports:
       - 9090:9090
