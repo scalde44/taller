@@ -14,7 +14,7 @@ spring:
    datasource:
       driver-class-name: org.postgresql.Driver
       type: com.zaxxer.hikari.HikariDataSource
-      jdbcUrl: jdbc:postgresql://127.0.0.1:5432/taller
+      url: jdbc:postgresql://postgresqldb:5432/taller
       username: postgres
       password: Scalderon4
       hikari:
